@@ -1,13 +1,10 @@
 package com.example.glayce.desafioandroid.Telas;
 
-import android.app.ProgressDialog;
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import com.example.glayce.desafioandroid.Adapter.AdapterImagemNome;
@@ -15,12 +12,6 @@ import com.example.glayce.desafioandroid.Model.ItensFirebase;
 import com.example.glayce.desafioandroid.R;
 import com.example.glayce.desafioandroid.Task.TaskRealizaComunicacao;
 import com.example.glayce.desafioandroid.Util.ActivityBase;
-import com.example.glayce.desafioandroid.Util.Apoio;
-import com.example.glayce.desafioandroid.Util.HttpHandler;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -28,6 +19,7 @@ public class FrmTelaA extends ActivityBase
 {
     // Controles da classe
     private RecyclerView rcvItens = null;
+    private Toolbar toolbar = null;
 
     // Variaveis da classe
     private ArrayList<ItensFirebase> arrItens = null;
@@ -54,6 +46,12 @@ public class FrmTelaA extends ActivityBase
     {
         // Obtem as referencias do xml
         rcvItens = (RecyclerView) findViewById(R.id.rcvImagemNome);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar.setNavigationIcon(R.drawable.voltar);
     }
 
     /**
@@ -114,5 +112,12 @@ public class FrmTelaA extends ActivityBase
         {
             Toast.makeText(this, "Não há itens para ser exibido.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp()
+    {
+        onBackPressed();
+        return true;
     }
 }

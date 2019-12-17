@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ public class FrmPrincipal extends AppCompatActivity implements View.OnClickListe
     private CardView cardTelaA = null;
     private CardView cardTelaB = null;
     private CardView cardTelaDownloads = null;
+    private Toolbar toolbar = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -46,11 +48,14 @@ public class FrmPrincipal extends AppCompatActivity implements View.OnClickListe
         cardTelaA = (CardView) findViewById(R.id.cardTelaA);
         cardTelaB = (CardView) findViewById(R.id.cardTelaB);
         cardTelaDownloads = (CardView) findViewById(R.id.cardTelaDownloads);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         // Define os listeners
         cardTelaA.setOnClickListener(this);
         cardTelaB.setOnClickListener(this);
         cardTelaDownloads.setOnClickListener(this);
+
+        setSupportActionBar(toolbar);
     }
 
     /**

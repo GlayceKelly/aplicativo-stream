@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.MediaController;
@@ -32,6 +33,7 @@ public class FrmTelaB extends ActivityBase implements View.OnClickListener, Dial
     private RecyclerView rcvNomeBotao = null;
     private ImageView imgPrev = null;
     private ImageView imgNext = null;
+    private Toolbar toolbar = null;
 
     // Variaveis da classe
     private ArrayList<ItensFirebase> arrItens = null;
@@ -67,6 +69,12 @@ public class FrmTelaB extends ActivityBase implements View.OnClickListener, Dial
         rcvNomeBotao = (RecyclerView) findViewById(R.id.rcvNomeBotao);
         imgPrev = (ImageView) findViewById(R.id.imgPrev);
         imgNext = (ImageView) findViewById(R.id.imgNext);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar.setNavigationIcon(R.drawable.voltar);
 
         // Define os listeners
         imgPrev.setOnClickListener(this);
@@ -337,5 +345,12 @@ public class FrmTelaB extends ActivityBase implements View.OnClickListener, Dial
 
             Toast.makeText(this, "Reproduzindo vídeo: " + sNomeDescricao, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp()
+    {
+        onBackPressed();
+        return true;
     }
 }

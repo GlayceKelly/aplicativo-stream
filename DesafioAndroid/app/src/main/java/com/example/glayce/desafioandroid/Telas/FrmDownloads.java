@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -27,6 +28,7 @@ public class FrmDownloads extends ActivityBase
     // controles da classe
     private VideoView videoView = null;
     private RecyclerView rcvDownloads= null;
+    private Toolbar toolbar = null;
 
     // Variaveis da classe
     private ArrayList<ItensFirebase> arrItens = null;
@@ -54,6 +56,12 @@ public class FrmDownloads extends ActivityBase
         // Obtem as referencias do xml
         videoView = (VideoView) findViewById(R.id.videoViewDownloads);
         rcvDownloads = (RecyclerView) findViewById(R.id.rcvDownloads);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar.setNavigationIcon(R.drawable.voltar);
     }
 
     @Override
@@ -167,5 +175,12 @@ public class FrmDownloads extends ActivityBase
         {
             Toast.makeText(this, "Não há itens para ser exibido.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp()
+    {
+        onBackPressed();
+        return true;
     }
 }
